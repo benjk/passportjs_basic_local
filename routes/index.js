@@ -4,6 +4,7 @@ import passport from "passport";
 
 import { genPassword } from "../utils/passwordUtils.js";
 import connection from "../config/database.js";
+import { isAuth, isAdmin } from "../utils/authMiddleware.js";
 
 /**
  * -------------- POST ROUTES ----------------
@@ -43,7 +44,9 @@ router.post("/register", (req, res, next) => {
  */
 
 router.get("/", (req, res, next) => {
-  res.send('<h1>Home</h1><p>Please <a href="/register">register</a> or <a href="/login">login</a></p>');
+  res.send(
+    '<h1>Home</h1><p>Please <a href="/register">register</a> or <a href="/login">login</a></p>'
+  );
 });
 
 router.get("/login", (req, res, next) => {
@@ -69,23 +72,15 @@ router.get("/register", (req, res, next) => {
 /**
  * Ici on met en place une route accessible seulement si on est authentifié
  */
-router.get("/protected-route", (req, res, next) => {
-  if (req.isAuthenticated()) {
-    res.send("Vous êtes connecté.");
-  } else {
-    res.send("Vous êtes déconnecté.");
-  }
+router.get("/protected-route", isAuth, (req, res, next) => {
+  res.send("Vous êtes connecté.");
 });
 
 /**
  * Ici on met en place une route accessible seulement si on est authentifié ET admin
  */
-router.get('/admin-route', (req, res, next) => {
-  if (req.isAuthenticated() && req.user.admin) {
-    res.send("Vous êtes un admin.");
-  } else {
-    res.send("Vous n'êtes rien.");
-  }
+router.get("/admin-route", isAdmin, (req, res, next) => {
+  res.send("Vous êtes un admin.");
 });
 
 /**
