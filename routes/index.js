@@ -1,10 +1,10 @@
-import { Router } from "express";
-const router = Router();
-import passport from "passport";
+const express = require("express");
+const router = express.Router();
+const passport = require("passport");
 
-import { genPassword } from "../utils/passwordUtils.js";
-import connection from "../config/database.js";
-import { isAuth, isAdmin } from "../utils/authMiddleware.js";
+const { isAuth, isAdmin } = require("../utils/authMiddleware.js");
+const { createUser } = require("../models/user.controller.js");
+
 
 /**
  * -------------- POST ROUTES ----------------
@@ -19,24 +19,10 @@ router.post(
 );
 
 router.post("/register", (req, res, next) => {
-  const saltHash = genPassword(req.body.password);
+  if (createUser(req.body.username, req.body.password)){
+    res.redirect("/login");
+  }
 
-  const salt = saltHash.salt;
-  const hash = saltHash.hash;
-
-  const insertQuery = `INSERT INTO USERS (username, hash, salt, admin) VALUES ('${req.body.username}', '${hash}',  '${salt}', true);`;
-
-  connection.query(insertQuery, (err, result) => {
-    if (err) {
-      res.status(500).json({
-        msg: "Some thing went wrong please try again",
-      });
-      console.log("probleme survenu");
-    } else {
-      console.log("User enregistre");
-      res.redirect("/login");
-    }
-  });
 });
 
 /**
@@ -108,4 +94,4 @@ router.get("/login-failure", (req, res, next) => {
   res.send("You entered the wrong password.");
 });
 
-export default router;
+module.exports = router;
