@@ -23,7 +23,7 @@ var db = {};
 // Chargement des modèles depuis le dossier models
 // 2 lignes par model
 const User = require('./user.model.js')(sequelize, DataTypes)
-db[User.name] = User;
+db.user = User;
 
 // Création des associations entre les models
 // Object.keys(db).forEach(function (modelName) {

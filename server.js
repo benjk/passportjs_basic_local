@@ -3,7 +3,7 @@ const session = require("express-session");
 const MySQLStore = require("express-mysql-session")(session);
 const passport = require("passport");
 
-const routes = require("./routes/index.js");
+const routes = require("./routes/routes.js");
 
 // Create the Express application
 const app = express();
@@ -53,7 +53,7 @@ const db = require("./models/database.js");
  */
 
 // Need to require the entire Passport config module so app.js knows about it
-require("./config/passport.js");
+require("./config/passport.js")(passport, db.user);
 
 app.use(passport.initialize());
 app.use(passport.session());

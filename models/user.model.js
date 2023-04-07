@@ -1,5 +1,5 @@
 module.exports = function(sequelize, Sequelize) {
-  var User = sequelize.define("user_passport", {
+  const User = sequelize.define("user_passport", {
     username: {
       type: Sequelize.STRING,
       allowNull: false

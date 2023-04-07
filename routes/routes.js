@@ -3,8 +3,6 @@ const router = express.Router();
 const passport = require("passport");
 
 const { isAuth, isAdmin } = require("../utils/authMiddleware.js");
-const { createUser } = require("../models/user.controller.js");
-
 
 /**
  * -------------- POST ROUTES ----------------
@@ -12,18 +10,16 @@ const { createUser } = require("../models/user.controller.js");
 
 router.post(
   "/login",
-  passport.authenticate("local", {
+  passport.authenticate("local-signin", {
     failureRedirect: "/login-failure",
     successRedirect: "/login-success",
   })
 );
 
-router.post("/register", (req, res, next) => {
-  if (createUser(req.body.username, req.body.password)){
-    res.redirect("/login");
-  }
-
-});
+router.post('/register_me', passport.authenticate('local-signup', {
+  successRedirect: '/login',
+  failureRedirect: '/register'
+}));
 
 /**
  * -------------- GET ROUTES ----------------
@@ -47,7 +43,7 @@ router.get("/login", (req, res, next) => {
 
 router.get("/register", (req, res, next) => {
   const form =
-    '<h1>Register Page</h1><form method="post" action="register">\
+    '<h1>Register Page</h1><form method="post" action="register_me">\
                     Enter Username:<br><input type="text" name="username">\
                     <br>Enter Password:<br><input type="password" name="password">\
                     <br><br><input type="submit" value="Submit"></form>';
@@ -57,6 +53,7 @@ router.get("/register", (req, res, next) => {
 
 /**
  * Ici on met en place une route accessible seulement si on est authentifié
+ * En passant le middleware isAuth en paramètre, on ne pourra y accéder que si l'on est pas bloqué par isAuth
  */
 router.get("/protected-route", isAuth, (req, res, next) => {
   res.send("Vous êtes connecté.");
