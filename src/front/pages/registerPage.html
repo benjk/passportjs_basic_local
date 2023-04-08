@@ -7,9 +7,9 @@
   </head>
 
   <body>
-    <h1>Connectez vous</h1>
+    <h1>Inscrivez vous</h1>
     <hr />
-    <form method="post" , action="/login">
+    <form method="post" , action="/register">
       <section id="formSection">
         <div class="group-b">
           <img class="connectImg" src="../img/img_connect.jpg" />
@@ -19,9 +19,9 @@
           <input type="text" placeholder="Votre email" name="username" />
           <label for="">Mot de passe</label>
           <input type="password" name="password" />
-          <input class="sub" type="submit" value="Se connecter" />
+          <input class="sub" type="submit" value="S'inscrire" />
           <button class="sub" type="button" id="navigateRegisterBtn">
-            S'inscrire
+            Se connecter
           </button>
           <button class="sub" type="button" id="navigateHomeBtn">
             Accueil
@@ -29,7 +29,7 @@
           <script>
             document.getElementById("navigateRegisterBtn").onclick =
               function () {
-                window.location = "/register";
+                window.location = "/login";
               };
             document.getElementById("navigateHomeBtn").onclick = function () {
               window.location = "/";

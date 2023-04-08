@@ -18,7 +18,7 @@ router.post(
 );
 
 router.post(
-  "/register_me",
+  "/register",
   passport.authenticate("local-signup", {
     successRedirect: "/login",
     failureRedirect: "/",
@@ -30,30 +30,26 @@ router.post(
  */
 
 router.get("/", (req, res, next) => {
+  var accueilMsg = "Tu n'es pas connecté"
+  if (req.isAuthenticated()) {
+    accueilMsg = `Bonjour <u>${req.user?.username}</u> ! Tu es actuellement connecté`
+  }
   res.send(
-    '<h1>Home</h1><p>Please <a href="/register">register</a> or <a href="/login">login</a></p>'
+    '<h1>Home</h1><h3>' + accueilMsg + '</h3><p>Tu peux visiter ces pages:</p>' +
+    '<a href="/register">register</a>' +
+    '<br><a href="/login">login</a>' + 
+    '<br><a href="/logout">logout</a>' +
+    '<br><a href="/protected-route">ton profil</a>' +
+    '<br><a href="/admin-route">page Admin</a>'
   );
 });
 
 router.get("/login", (req, res, next) => {
-  // const form =
-  //   '<h1>Login Page</h1><form method="POST" action="/login">\
-  //   Enter Username:<br><input type="text" name="username">\
-  //   <br>Enter Password:<br><input type="password" name="password">\
-  //   <br><br><input type="submit" value="Submit"></form>';
-
-  // res.send(form);
   res.sendFile(path.join(__dirname, '..', 'front', 'pages', 'loginPage.html'));
 });
 
 router.get("/register", (req, res, next) => {
-  const form =
-    '<h1>Register Page</h1><form method="post" action="register_me">\
-                    Enter Username:<br><input type="text" name="username">\
-                    <br>Enter Password:<br><input type="password" name="password">\
-                    <br><br><input type="submit" value="Submit"></form>';
-
-  res.send(form);
+  res.sendFile(path.join(__dirname, '..', 'front', 'pages', 'registerPage.html'));
 });
 
 /**
