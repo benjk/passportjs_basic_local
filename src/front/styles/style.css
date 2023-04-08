@@ -1,10 +1,11 @@
 body {
-  background-color: rgb(126, 198, 201);
+  background-color: #CFD8DC;
   font-family: "Open Sans", sans-serif;
 }
 
 h1 {
-  font-family: Merriweather, serif;
+  color: #2C3E50;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   text-align: center;
   text-transform: uppercase;
   margin-top: 3%;
@@ -12,13 +13,15 @@ h1 {
 
 hr {
   width: 10em;
-  border-top: 3px solid rgb(106, 79, 78);
+  border-top: 3px solid #2C3E50;
 }
 
 label {
   font-size: 1em;
   margin-top: 1em;
   margin-bottom: 0.25em;
+  font-weight: bold;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 input {
@@ -33,7 +36,7 @@ input {
 }
 
 #formSection {
-  width: 60%;
+  width: 45%;
   margin: 2em auto;
 }
 
@@ -43,12 +46,25 @@ input {
   align-items: center;
 }
 
+.group-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .group-a,
 .group-b {
-  width: 50%;
   display: flex;
   flex-direction: column;
   margin: 2em;
+}
+
+.group-a {
+  width: 65%;
+}
+
+.group-b {
+  width: 35%;
 }
 
 .connectImg {
@@ -58,27 +74,27 @@ input {
 
 .group-2 {
   margin-top: 1.5em;
-  height: 4em;
   display: flex;
   justify-content: center;
 }
 
 .sub {
-  height: 100%;
+  height: 4em;
   width: 50%;
   text-transform: uppercase;
   color: white;
-  font-weight: bold;
-  background-color: rgba(106, 79, 78);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background-color: #2C3E50;
+  margin-bottom: 1em;
 }
 
 .sub:hover {
-  background-color: rgba(106, 79, 78, 0.8);
+  background-color: #566573;
 }
 
 @media only screen and (max-width: 1000px) {
   #formSection{
-    width: 90%;
+    width: 80%;
   }
 
   .group-1 {
@@ -88,10 +104,24 @@ input {
   .group-b,
   .group-a {
     width: 100%;
-    margin: 0;
+  }
+
+  .group-a label {
+    text-align: center;
+    margin-bottom: 1em;
   }
 
   .connectImg {
-    padding: 10vh;
+    padding-left: 15vh;
+    padding-right: 15vh;
+  }
+
+  .group-2{
+    margin-top: 0;
+  }
+
+  .sub {
+    width: 100%;
+    margin-bottom: 2em;
   }
 }
