@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }))
 /**
  * -------------- DATABASE ----------------
  */
-const db = require("./models/database.js");
+const db = require("./config/database.js");
 
 /**
  * -------------- SESSION SETUP ----------------

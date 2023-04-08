@@ -3,7 +3,7 @@ const DataTypes = require('sequelize/lib/data-types');
 
 // Constantes à exporter en variable d'env par la suite
 var env = process.env.NODE_ENV || "development";
-var config = require("../config/data.json")[env];
+var config = require("./data.json")[env];
 
 const BDD_HOSTURL = config.host;
 const BDD_PORT = config.port;
@@ -22,7 +22,7 @@ const sequelize = new Sequelize(BDD_BASENAME, BDD_USER, BDD_PASSWORD, {
   dialect: "mysql",
 });
 
-const User = require('./user.model.js')(sequelize, DataTypes)
+const User = require('../models/user.model.js')(sequelize, DataTypes)
 db.user = User;
 
 // Création des associations entre les models si besoin
