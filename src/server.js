@@ -38,6 +38,9 @@ app.use(passport.session());
 
 app.use(routes);
 
+// Permet de donner accès à l'app aux fichier public (style, img,...)
+app.use(express.static(__dirname + '/front'));
+
 /**
  * -------------- SERVER ----------------
  */

@@ -36,13 +36,14 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/login", (req, res, next) => {
-  const form =
-    '<h1>Login Page</h1><form method="POST" action="/login">\
-    Enter Username:<br><input type="text" name="username">\
-    <br>Enter Password:<br><input type="password" name="password">\
-    <br><br><input type="submit" value="Submit"></form>';
+  // const form =
+  //   '<h1>Login Page</h1><form method="POST" action="/login">\
+  //   Enter Username:<br><input type="text" name="username">\
+  //   <br>Enter Password:<br><input type="password" name="password">\
+  //   <br><br><input type="submit" value="Submit"></form>';
 
-  res.send(form);
+  // res.send(form);
+  res.sendFile(path.join(__dirname, '..', 'front', 'pages', 'loginPage.html'));
 });
 
 router.get("/register", (req, res, next) => {
@@ -71,7 +72,7 @@ router.get("/protected-route", isAuth, (req, res, next) => {
  */
 router.get("/admin-route", isAdmin, (req, res, next) => {
   // res.send("Vous êtes un admin.");
-  res.sendFile(path.join(__dirname, '..', 'adminPage.html'));
+  res.sendFile(path.join(__dirname, '..', 'front', 'pages', 'adminPage.html'));
 });
 
 /**
