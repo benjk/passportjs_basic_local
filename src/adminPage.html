@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    <H1>BIENVENUE SUR LA PAGE ADMIN</H1>
+    <form action="javascript:alert('On envoie le formulaire');" method="post">
+        <label for="fname">Nom:</label>
+        <input id="fname" type="text" name="name" required><br>
+        <label for="fpassword">Password:</label>
+        <input id="fpassword" type="password" name="password" required><br><br>
+
+        <span>Je suis:</span><br>
+        <label for="fright">Droitier</label>
+        <input checked id="fright" type="radio" name="group"><br>
+        <label for="fleft">Gaucher</label>
+        <input id="fleft" type="radio" name="group"><br><br>
+
+        <label for="fmove">Je me déplace principalement:</label><br>
+        <select id="fmove" name="deplacements" >
+            <option value="car">En voiture</option>
+            <option value="bike">En vélo</option>
+            <option value="feet">A pied</option>
+          </select><br><br><br><br>
+
+        <label for="fcomments">Commentaires:</label><br>
+        <textarea placeholder="Entrez vos commentaires ici" id="fcomments" type="text" name="comments"></textarea><br><br>
+
+        <label for="fnews">Abonnez vous à la newsletter</label>
+        <input checked id="fnews" type="checkbox" name="fnews"><br><br>
+
+        <input type="reset" value="Vider le formulaire">
+        <input type="submit" value="Envoyer">
+    </form>
+</body>
+
+</html>

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
+const path = require("path")
 
 const { isAuth, isAdmin } = require("../utils/authMiddleware.js");
 
@@ -69,7 +70,8 @@ router.get("/protected-route", isAuth, (req, res, next) => {
  * Ici on met en place une route accessible seulement si on est authentifié ET admin
  */
 router.get("/admin-route", isAdmin, (req, res, next) => {
-  res.send("Vous êtes un admin.");
+  // res.send("Vous êtes un admin.");
+  res.sendFile(path.join(__dirname, '..', 'adminPage.html'));
 });
 
 /**
