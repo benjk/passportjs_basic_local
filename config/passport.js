@@ -39,10 +39,6 @@ module.exports = function (passport, user) {
               message: "That username is already taken",
             });
           } else {
-            console.log(
-              "Username + password : " + username + " et " + password
-            );
-
             const saltHash = genPassword(password);
 
             const salt = saltHash.salt;
@@ -56,7 +52,9 @@ module.exports = function (passport, user) {
 
             User.create(data).then(function (newUser, created) {
               if (!newUser) {
-                return done(null, false);
+                return done(null, false, {
+                  message: "Une erreur est survenue lors de l'enregistrement",
+                });
               }
 
               if (newUser) {
@@ -74,13 +72,9 @@ module.exports = function (passport, user) {
     "local-signin",
     new LocalStrategy(
       {
-        // by default, local strategy uses username and password, we will not override with email
-
         usernameField: "username",
-
         passwordField: "password",
-
-        passReqToCallback: true, // allows us to pass back the entire request to the callback
+        passReqToCallback: true
       },
 
       function (req, username, password, done) {

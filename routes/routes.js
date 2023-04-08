@@ -16,10 +16,13 @@ router.post(
   })
 );
 
-router.post('/register_me', passport.authenticate('local-signup', {
-  successRedirect: '/login',
-  failureRedirect: '/register'
-}));
+router.post(
+  "/register_me",
+  passport.authenticate("local-signup", {
+    successRedirect: "/login",
+    failureRedirect: "/",
+  })
+);
 
 /**
  * -------------- GET ROUTES ----------------

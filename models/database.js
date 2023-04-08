@@ -5,11 +5,14 @@ const DataTypes = require('sequelize/lib/data-types');
  * -------------- DATABASE ----------------
  */
 
+var env = process.env.NODE_ENV || "development";
+var config = require("../config/data.json")[env];
+
 // Constantes à exporter en variable d'env par la suite
-const BDD_HOSTURL = "localhost";
-const BDD_USER = "root";
-const BDD_PASSWORD = "root";
-const BDD_BASENAME = "first_bdd";
+const BDD_HOSTURL = config.host;
+const BDD_USER = config.username;
+const BDD_PASSWORD = config.password;
+const BDD_BASENAME = config.database;
 
 // SEQUELIZE
 const sequelize = new Sequelize(BDD_BASENAME, BDD_USER, BDD_PASSWORD, {
