@@ -2,7 +2,9 @@ function isAuth(req, res, next) {
     if (req.isAuthenticated()) {
         next();
     } else {
-        res.send('<p>tu ne peux pas accéder ici sans être connecté !</p>');
+        const loginBtn = "<form action='/login'><input type='submit' value='Login'/></form>"
+        const registerBtn = "<form action='/register'><input type='submit' value='Register'/></form>"
+        res.send('<p>tu ne peux pas accéder ici sans être connecté !</p>' + loginBtn + registerBtn);
     }
 }
 

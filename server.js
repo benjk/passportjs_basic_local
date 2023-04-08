@@ -1,7 +1,7 @@
 const express = require("express");
 const passport = require("passport");
 
-const routes = require("./routes/routes.js");
+const routes = require("./config/routes.js");
 
 // Create the Express application
 const app = express();

@@ -59,7 +59,10 @@ router.get("/register", (req, res, next) => {
  * En passant le middleware isAuth en paramètre, on ne pourra y accéder que si l'on est pas bloqué par isAuth
  */
 router.get("/protected-route", isAuth, (req, res, next) => {
-  res.send("Vous êtes connecté.");
+  const adminMessage = req.user.admin ? "Tu es un admin" : "Tu n'es pas un admin"
+  const logoutBtn = "<br><form action='/logout'><input type='submit' value='Logout'/></form>"
+  const adminBtn = "<form action='/admin-route'><input type='submit' value='Admin'/></form>"
+  res.send("Tu es connecté " + req.user.username + " ! " + adminMessage + logoutBtn + adminBtn);
 });
 
 /**
@@ -77,7 +80,7 @@ router.get("/logout", (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect("/protected-route");
+    res.redirect("/");
   });
 });
 
