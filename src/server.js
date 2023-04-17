@@ -1,5 +1,7 @@
 const express = require("express");
+const path = require("path")
 const passport = require("passport");
+const flash = require('connect-flash')
 
 const routes = require("./config/routes.js");
 
@@ -9,6 +11,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
+// Moteur de template EJS
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'front', 'pages'));
 
 /**
  * -------------- DATABASE ----------------
@@ -31,6 +36,7 @@ require("./config/passport.js")(passport, db.user);
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash())
 
 /**
  * -------------- ROUTES ----------------
@@ -39,6 +45,7 @@ app.use(passport.session());
 app.use(routes);
 
 // Permet de donner accès à l'app aux fichier public (style, img,...)
+// Sans cette ligne le CSS et les images ne sont pas interpretés
 app.use(express.static(__dirname + '/front'));
 
 /**

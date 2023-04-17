@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const path = require("path")
+const { checkSchema, validationResult } = require('express-validator');
 
 const { isAuth, isAdmin } = require("../utils/authMiddleware.js");
 
@@ -9,25 +10,64 @@ const { isAuth, isAdmin } = require("../utils/authMiddleware.js");
  * -------------- POST ROUTES ----------------
  */
 
+
 router.post(
   "/login",
   passport.authenticate("local-signin", {
-    failureRedirect: "/login-failure",
+    failureRedirect: "/login",
     successRedirect: "/login-success",
+    failureFlash: true,
   })
 );
 
+const { registrationSchema } = require('./validators.js')
 router.post(
   "/register",
+  checkSchema(registrationSchema),
+  (req, res, next) => {
+    // Validate incoming input
+    const errors = validationResult(req);
+
+    // S'il y a des erreurs on aliment les flash messages et on redirige
+    if (!errors.isEmpty()) {
+      for (const err of errors.array()){
+        console.log(err.msg);
+        req.flash('error', err.msg)
+      }
+
+      res.redirect('/register')
+    } else {
+      // Si pas d'erreur on lance le next middleware = signup avec passport
+      next()
+    }
+  },
   passport.authenticate("local-signup", {
     successRedirect: "/login",
-    failureRedirect: "/",
+    failureRedirect: "/register",
+    failureFlash: true
   })
 );
 
 /**
  * -------------- GET ROUTES ----------------
  */
+
+router.get("/login", (req, res, next) => {
+  const error = req.flash('error') || []
+  for (const err of error){
+    console.log("Mon erreur flash :" + err);
+  }
+  res.render('loginPage', { error })
+});
+
+router.get("/register", (req, res, next) => {
+  // Récupération des messages flashs et affichage en console
+  const error = req.flash('error') || []
+  for (const err of error){
+    console.log("Mon erreur flash :" + err);
+  }
+  res.render('registerPage', { error })
+});
 
 router.get("/", (req, res, next) => {
   var accueilMsg = "Tu n'es pas connecté"
@@ -42,14 +82,6 @@ router.get("/", (req, res, next) => {
     '<br><a href="/protected-route">ton profil</a>' +
     '<br><a href="/admin-route">page Admin</a>'
   );
-});
-
-router.get("/login", (req, res, next) => {
-  res.sendFile(path.join(__dirname, '..', 'front', 'pages', 'loginPage.html'));
-});
-
-router.get("/register", (req, res, next) => {
-  res.sendFile(path.join(__dirname, '..', 'front', 'pages', 'registerPage.html'));
 });
 
 /**

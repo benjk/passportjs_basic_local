@@ -1,4 +1,5 @@
 const { validPassword, genPassword } = require("../utils/passwordUtils.js");
+const msg = require('./data.json').messages;
 
 module.exports = function (passport, user) {
   var User = user;
@@ -35,8 +36,9 @@ module.exports = function (passport, user) {
           },
         }).then(function (user) {
           if (user) {
+            console.log(msg.passport.errorUsernameExists);
             return done(null, false, {
-              message: "That username is already taken",
+              message: msg.passport.errorUsernameExists,
             });
           } else {
             const saltHash = genPassword(password);
@@ -53,7 +55,7 @@ module.exports = function (passport, user) {
             User.create(data).then(function (newUser, created) {
               if (!newUser) {
                 return done(null, false, {
-                  message: "Une erreur est survenue lors de l'enregistrement",
+                  message: msg.passport.errorRegistrationFailed,
                 });
               }
 
@@ -88,13 +90,13 @@ module.exports = function (passport, user) {
           .then(function (user) {
             if (!user) {
               return done(null, false, {
-                message: "Username does not exist",
+                message: msg.passport.errorUsernameNotFound,
               });
             }
 
             if (!validPassword(password, user.hash, user.salt)) {
               return done(null, false, {
-                message: "Incorrect password.",
+                message: msg.passport.errorIncorrectPassword,
               });
             }
 
@@ -106,7 +108,7 @@ module.exports = function (passport, user) {
             console.log("Error:", err);
 
             return done(null, false, {
-              message: "Something went wrong with your Signin",
+              message: msg.passport.errorSignInFailed,
             });
           });
       }

@@ -5,5 +5,17 @@
         "database": "first_bdd",
         "host": "localhost",
         "dialect": "mysql"
+    },
+    "messages": {
+        "errorPasswordEmpty": "Password vide !",
+        "errorPasswordWeak": "Password de faiblard",
+        "errorEmailFormat": "Le format email pas respecté",
+        "passport": {
+            "errorUsernameExists": "Le nom d'utilisateur existe déjà !",
+            "errorRegistrationFailed": "Une erreur est survenue lors de l'enregistrement. Veuillez réessayer.",
+            "errorUsernameNotFound": "Nom d'utilisateur introuvable",
+            "errorIncorrectPassword": "Mot de passe incorrect",
+            "errorSignInFailed": "Quelque chose s'est mal passé lors de votre connexion"
+        }
     }
 }
