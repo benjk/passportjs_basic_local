@@ -20,6 +20,11 @@
               <span class="error-text"><%= error[0] %></span>
             </div>
           <% } %>
+          <% if (success.length > 0 && username.length > 0 ) { %>
+            <div class="success-message">
+              <span class="success-text"><%= success[0] %><u><strong><%= username[0] %></strong></u></span>
+            </div>
+          <% } %>
           <label for="">Nom d'utilisateur</label>
           <input type="text" placeholder="Votre email" name="username" />
           <label for="">Mot de passe</label>

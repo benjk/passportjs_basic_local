@@ -5,14 +5,33 @@ const path = require("path")
 const { checkSchema, validationResult } = require('express-validator');
 
 const { isAuth, isAdmin } = require("../utils/authMiddleware.js");
+const msg = require ('./data.json').messages
 
 /**
  * -------------- POST ROUTES ----------------
  */
 
+const { registrationSchema, loginSchema } = require('./validators.js')
 
 router.post(
   "/login",
+  checkSchema(loginSchema),
+  (req, res, next) => {
+    // Validate incoming input
+    const errors = validationResult(req);
+
+    // S'il y a des erreurs on aliment les flash messages et on redirige
+    if (!errors.isEmpty()) {
+      for (const err of errors.array()){
+        req.flash('error', err.msg)
+      }
+
+      res.redirect('/register')
+    } else {
+      // Si pas d'erreur on lance le next middleware = signup avec passport
+      next()
+    }
+  },
   passport.authenticate("local-signin", {
     failureRedirect: "/login",
     successRedirect: "/login-success",
@@ -20,15 +39,12 @@ router.post(
   })
 );
 
-const { registrationSchema } = require('./validators.js')
 router.post(
   "/register",
   checkSchema(registrationSchema),
   (req, res, next) => {
-    // Validate incoming input
     const errors = validationResult(req);
 
-    // S'il y a des erreurs on aliment les flash messages et on redirige
     if (!errors.isEmpty()) {
       for (const err of errors.array()){
         console.log(err.msg);
@@ -42,11 +58,14 @@ router.post(
     }
   },
   passport.authenticate("local-signup", {
-    successRedirect: "/login",
     failureRedirect: "/register",
-    failureFlash: true
-  })
-);
+    failureFlash: true,    
+  }),
+  (req,res) => {
+    req.flash("success", msg.passport.successSignIn);
+    req.flash("user", req.user?.username);
+    res.redirect("/login");
+ });
 
 /**
  * -------------- GET ROUTES ----------------
@@ -54,10 +73,10 @@ router.post(
 
 router.get("/login", (req, res, next) => {
   const error = req.flash('error') || []
-  for (const err of error){
-    console.log("Mon erreur flash :" + err);
-  }
-  res.render('loginPage', { error })
+  const success = req.flash('success') || []
+  const username = req.flash('user') || []
+
+  res.render('loginPage', { error, success, username })
 });
 
 router.get("/register", (req, res, next) => {

@@ -6,7 +6,6 @@ module.exports = function (passport, user) {
   var LocalStrategy = require("passport-local").Strategy;
   //serialize
   passport.serializeUser(function (user, done) {
-    console.log("serializing user: ", user);
     done(null, user.id);
   });
   // deserialize user
@@ -36,7 +35,6 @@ module.exports = function (passport, user) {
           },
         }).then(function (user) {
           if (user) {
-            console.log(msg.passport.errorUsernameExists);
             return done(null, false, {
               message: msg.passport.errorUsernameExists,
             });

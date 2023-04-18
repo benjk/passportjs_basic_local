@@ -15,7 +15,8 @@
             "errorRegistrationFailed": "Une erreur est survenue lors de l'enregistrement. Veuillez réessayer.",
             "errorUsernameNotFound": "Nom d'utilisateur introuvable",
             "errorIncorrectPassword": "Mot de passe incorrect",
-            "errorSignInFailed": "Quelque chose s'est mal passé lors de votre connexion"
+            "errorSignInFailed": "Quelque chose s'est mal passé lors de votre connexion",
+            "successSignIn": "Bienvenue sur notre site "
         }
     }
 }

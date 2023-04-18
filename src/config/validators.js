@@ -24,6 +24,24 @@ const registrationSchema = {
   },
 };
 
+const loginSchema = {
+  username: {
+    isEmpty: {
+      negated: true,
+      errorMessage: msg.errorFieldEmpty,
+      bail: true, // Permet de stopper la chaine de validation pour ce champ uniquement (username)
+    }
+  },
+  password: {
+    isEmpty: {
+      negated: true,
+      errorMessage: msg.errorFieldEmpty,
+      bail: true,
+    }
+  },
+};
+
 module.exports = {
   registrationSchema,
+  loginSchema
 };
