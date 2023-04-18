@@ -51,11 +51,11 @@ label {
 }
 
 .group-a {
-  width: 65%;
+  width: 60%;
 }
 
 .group-b {
-  width: 35%;
+  width: 40%;
 }
 
 .connectImg {
@@ -108,7 +108,27 @@ label {
   text-shadow: 1px 1px rgba(250, 250, 250, .3);
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1750px) {
+  #formSection {
+    width: 50%;
+  }
+
+  .group-a {
+    width: 60%;
+  }
+  
+  .group-b {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 1450px) {
+  #formSection {
+    width: 55%;
+  }
+}
+
+@media only screen and (max-width: 1150px) {
   #formSection {
     width: 60%;
     flex-direction: column;
