@@ -15,8 +15,10 @@
           <img class="connectImg" src="../img/img_connect.jpg" />
         </div>
         <div class="group-a">
-          <% for (const err of error) { %>
-            <p><%= err %></p>
+          <% if (error.length > 0) { %>
+            <div class="error-message">
+              <span class="error-text"><%= error[0] %></span>
+            </div>
           <% } %>
           <label for="">Nom d'utilisateur</label>
           <input type="text" placeholder="Votre email" name="username" />

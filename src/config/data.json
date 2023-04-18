@@ -9,7 +9,7 @@
     "messages": {
         "errorFieldEmpty": "Tous les champs doivent être remplis !",
         "errorPasswordWeak": "Password de faiblard (doit être entre 2 et 4)",
-        "errorEmailFormat": "Le format email pas respecté",
+        "errorEmailFormat": "Le nom d'utilisateur doit être un email",
         "passport": {
             "errorUsernameExists": "Le nom d'utilisateur existe déjà !",
             "errorRegistrationFailed": "Une erreur est survenue lors de l'enregistrement. Veuillez réessayer.",

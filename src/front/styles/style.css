@@ -21,7 +21,7 @@ label {
   margin-top: 1em;
   margin-bottom: 0.25em;
   font-weight: bold;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #formSection input {
@@ -76,8 +76,40 @@ label {
   background-color: #566573;
 }
 
+.error-message {
+  background-color: #fce4e4;
+  border: 1px solid #fcc2c3;
+  float: left;
+  padding: 20px 30px;
+}
+
+.error-text {
+  color: #cc0033;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 20px;
+  text-shadow: 1px 1px rgba(250, 250, 250, .3);
+}
+
+.success-message {
+  background-color: #d7f2d8;
+  border: 1px solid #b2e2b3;
+  float: left;
+  padding: 20px 30px;
+}
+
+.success-text {
+  color: #228c22;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 20px;
+  text-shadow: 1px 1px rgba(250, 250, 250, .3);
+}
+
 @media only screen and (max-width: 1000px) {
-  #formSection{
+  #formSection {
     width: 60%;
     flex-direction: column;
   }

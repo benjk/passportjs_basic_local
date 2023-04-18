@@ -2,14 +2,14 @@ const msg = require("./data.json").messages;
 
 const registrationSchema = {
   username: {
-    isEmail: {
-      errorMessage: msg.errorEmailFormat,
-    },
     isEmpty: {
       negated: true,
       errorMessage: msg.errorFieldEmpty,
+      bail: true, // Permet de stopper la chaine de validation pour ce champ uniquement (username)
     },
-    bail: true // Permet de stopper la validation si cette règle n'est pas respectée
+    isEmail: {
+      errorMessage: msg.errorEmailFormat,
+    },
   },
   password: {
     isEmpty: {
