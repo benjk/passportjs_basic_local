@@ -7,10 +7,10 @@
         "dialect": "mysql"
     },
     "production": {
-        "username": "root",
-        "password": "root",
-        "database": "first_bdd",
-        "host": "localhost",
+        "username": "b5db74d508fde6",
+        "password": "da05f6e9",
+        "database": "heroku_143c2260eb65867",
+        "host": "us-cdbr-east-06.cleardb.net",
         "dialect": "mysql"
     },
     "messages": {
