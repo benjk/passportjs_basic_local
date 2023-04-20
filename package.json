@@ -2,11 +2,6 @@
   "name": "basic_passwordjs_local_strategy",
   "version": "1.0",
   "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
-  },
   "dependencies": {
     "connect-flash": "^0.1.1",
     "core-js": "^3.8.3",
@@ -25,5 +20,9 @@
     "path": "^0.12.7",
     "sequelize": "^6.30.0",
     "url": "^0.11.0"
+  },
+  "engines": {
+    "node": "18.15.0",
+    "npm": "9.5.0"
   }
 }
