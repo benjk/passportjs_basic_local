@@ -11,6 +11,7 @@
         "password": "da05f6e9",
         "database": "heroku_143c2260eb65867",
         "host": "us-cdbr-east-06.cleardb.net",
+        "port": "3306",
         "dialect": "mysql"
     },
     "messages": {

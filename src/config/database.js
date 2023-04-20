@@ -3,6 +3,7 @@ const DataTypes = require('sequelize/lib/data-types');
 
 // Constantes à exporter en variable d'env par la suite
 var env = process.env.NODE_ENV || "development";
+console.log("Environnement Actuel : " + env);
 var config = require("./data.json")[env];
 
 const BDD_HOSTURL = config.host;
