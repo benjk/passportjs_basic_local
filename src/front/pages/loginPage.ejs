@@ -2,51 +2,63 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <link rel="stylesheet" href="../styles/style.css" />
     <title>Sign In</title>
   </head>
 
   <body>
-    <h1>Connectez vous</h1>
-    <hr />
-    <form method="post" , action="/login">
-      <section id="formSection">
-        <div class="group-b">
-          <img class="connectImg" src="../img/img_connect.jpg" />
-        </div>
-        <div class="group-a">
-          <% if (error.length > 0) { %>
-            <div class="error-message">
-              <span class="error-text"><%= error[0] %></span>
+    <div class="page-wrapper">
+      <div class="wrapper">
+        <div class="card">
+          <div class="card-heading"></div>
+          <form method="post", action="/login" class="card-body">
+            <div>
+              <h2>Connectez vous</h2>
+              <hr />
             </div>
-          <% } %>
-          <% if (success.length > 0 && username.length > 0 ) { %>
-            <div class="success-message">
-              <span class="success-text"><%= success[0] %><u><strong><%= username[0] %></strong></u></span>
-            </div>
-          <% } %>
-          <label for="">Nom d'utilisateur</label>
-          <input type="text" placeholder="Votre email" name="username" />
-          <label for="">Mot de passe</label>
-          <input type="password" name="password" />
-          <input class="sub" type="submit" value="Se connecter" />
-          <button class="sub" type="button" id="navigateRegisterBtn">
-            S'inscrire
-          </button>
-          <button class="sub" type="button" id="navigateHomeBtn">
-            Accueil
-          </button>
-          <script>
-            document.getElementById("navigateRegisterBtn").onclick =
-              function () {
-                window.location = "/register";
-              };
-            document.getElementById("navigateHomeBtn").onclick = function () {
-              window.location = "/";
-            };
-          </script>
+              <% if (error.length > 0) { %>
+              <div class="error-message">
+                <span class="error-text"><%= error[0] %></span>
+              </div>
+              <% } %> <% if (success.length > 0 && username.length > 0 ) { %>
+              <div class="success-message">
+                <span class="success-text"
+                  ><%= success[0] %><u
+                    ><strong><%= username[0] %></strong></u
+                  ></span
+                >
+              </div>
+              <% } %>
+              <input type="text" placeholder="Email" name="username" />
+              <input
+                type="password"
+                name="password"
+                placeholder="Mot de passe"
+              />
+              <input class="btn" type="submit" value="Se connecter" />
+              <button class="btn" type="button" id="navigateRegisterBtn">
+                S'inscrire
+              </button>
+              <button class="btn" type="button" id="navigateHomeBtn">
+                Accueil
+              </button>
+              <script>
+                document.getElementById("navigateRegisterBtn").onclick =
+                  function () {
+                    window.location = "/register";
+                  };
+                document.getElementById("navigateHomeBtn").onclick =
+                  function () {
+                    window.location = "/";
+                  };
+              </script>
+          </form>
         </div>
-      </section>
-    </form>
+      </div>
+    </div>
   </body>
 </html>

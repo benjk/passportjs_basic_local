@@ -1,80 +1,150 @@
-body {
-  background-color: #CFD8DC;
-  font-family: "Open Sans", sans-serif;
+/* ==========================================================================
+   #BOX-SIZING
+   ========================================================================== */
+/**
+ * More sensible default box-sizing:
+ * css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
+ */
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-h1 {
+/**
+ * A very simple reset of default margins and paddings.
+ */
+* {
+  padding: 0;
+  margin: 0;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+/* ==========================================================================
+   #PAGE WRAPPER
+   ========================================================================== */
+
+body {
+  background-color: #CFD8DC;
+  font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
+}
+
+.page-wrapper {
+  min-height: 100vh;
+  padding-top: 180px
+}
+
+/* ==========================================================================
+   #WRAPPER CONTENT
+   ========================================================================== */
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 780px;
+}
+
+/* ==========================================================================
+   #TEXTES
+   ========================================================================== */
+h2 {
   color: #2C3E50;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  text-align: center;
   text-transform: uppercase;
   margin-top: 3%;
 }
 
 hr {
-  width: 10em;
+  width: 10rem;
   border-top: 3px solid #2C3E50;
+  margin-top: 0.5rem;
 }
 
-label {
-  font-size: 1em;
-  margin-top: 1em;
-  margin-bottom: 0.25em;
-  font-weight: bold;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+/* ==========================================================================
+   #CARD CONTENANT LE FORM
+   ========================================================================== */
 
-#formSection input {
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  resize: none;
-  padding: 0.45em;
-  min-height: 2.5em;
-}
+   .card {
+    overflow: hidden;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background: #AAB7B8;
+    -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .card .card-heading {
+    background: url("../img/img_connect.jpg") top left/cover no-repeat;
+    width: 47%;
+    min-height: 500px;
+  }
+  
+  .card .card-body {
+    padding: 37px 45px;
+    padding-bottom: 65px;
+    width: 53%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem
+  }
+  
+  @media (max-width: 780px) {
+    .page-wrapper {
+      padding-top: 0
+    }
+  
+    .card {
+      flex-direction: column;
+    }
+    .card .card-heading {
+      width: 100%;
+      background-position: center center;
+    }
+    .card .card-body {
+      width: 100%;
+      padding: 15px 30px;
+    }
+  }
 
-#formSection {
-  width: 45%;
-  margin: 2em auto;
-  margin-top: 4em;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
+/* ==========================================================================
+   #FORM
+   ========================================================================== */
+  
+  .card-body input {
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    resize: none;
+    padding: 0.45em;
+    min-height: 2.5rem;
+  }
+  
+  .btn {
+    height: 2.5rem;
+    text-transform: uppercase;
+    color: white;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: #2C3E50;
+  }
+  
+  .btn:hover {
+    background-color: #566573;
+  }
 
-.group-a,
-.group-b {
-  display: flex;
-  flex-direction: column;
-  margin-left: 2em;
-  margin-right: 2em;
-  justify-content: center;
-}
+/* ==========================================================================
+   #ALERT MESSAGES
+   ========================================================================== */
 
-.group-a {
-  width: 60%;
-}
-
-.group-b {
-  width: 40%;
-}
-
-.connectImg {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.sub {
-  height: 4em;
-  text-transform: uppercase;
-  color: white;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  background-color: #2C3E50;
-  margin-top: 2em;
-}
-
-.sub:hover {
-  background-color: #566573;
-}
 
 .error-message {
   background-color: #fce4e4;
@@ -106,46 +176,4 @@ label {
   font-weight: bold;
   line-height: 20px;
   text-shadow: 1px 1px rgba(250, 250, 250, .3);
-}
-
-@media only screen and (max-width: 1750px) {
-  #formSection {
-    width: 50%;
-  }
-
-  .group-a {
-    width: 60%;
-  }
-  
-  .group-b {
-    width: 40%;
-  }
-}
-
-@media only screen and (max-width: 1450px) {
-  #formSection {
-    width: 55%;
-  }
-}
-
-@media only screen and (max-width: 1150px) {
-  #formSection {
-    width: 60%;
-    flex-direction: column;
-  }
-
-  .group-b,
-  .group-a {
-    width: 100%;
-  }
-
-  .group-a label {
-    text-align: center;
-    margin-bottom: 1em;
-  }
-
-  .connectImg {
-    padding-left: 12vh;
-    padding-right: 12vh;
-  }
 }
