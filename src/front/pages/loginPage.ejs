@@ -15,47 +15,45 @@
       <div class="wrapper">
         <div class="card">
           <div class="card-heading"></div>
-          <form method="post", action="/login" class="card-body">
-            <div>
-              <h2>Connectez vous</h2>
-              <hr />
+          <form method="post" , action="/login" class="card-body">
+            <h2>Connexion</h2>
+            <% if (error.length > 0) { %>
+            <div class="message error-message">
+              <span class="message-text error-text"><%= error[0] %></span>
             </div>
-              <% if (error.length > 0) { %>
-              <div class="error-message">
-                <span class="error-text"><%= error[0] %></span>
-              </div>
-              <% } %> <% if (success.length > 0 && username.length > 0 ) { %>
-              <div class="success-message">
-                <span class="success-text"
-                  ><%= success[0] %><u
-                    ><strong><%= username[0] %></strong></u
-                  ></span
-                >
-              </div>
-              <% } %>
-              <input type="text" placeholder="Email" name="username" />
-              <input
-                type="password"
-                name="password"
-                placeholder="Mot de passe"
-              />
-              <input class="btn" type="submit" value="Se connecter" />
-              <button class="btn" type="button" id="navigateRegisterBtn">
-                S'inscrire
-              </button>
-              <button class="btn" type="button" id="navigateHomeBtn">
-                Accueil
-              </button>
-              <script>
-                document.getElementById("navigateRegisterBtn").onclick =
-                  function () {
-                    window.location = "/register";
-                  };
-                document.getElementById("navigateHomeBtn").onclick =
-                  function () {
-                    window.location = "/";
-                  };
-              </script>
+            <% } %> <% if (success.length > 0 && username.length > 0 ) { %>
+            <div class="message success-message">
+              <span class="message-text success-text"
+                ><%= success[0] %><u
+                  ><strong><%= username[0] %></strong></u
+                ></span
+              >
+            </div>
+            <% } %>
+            <input type="text" placeholder="Email" name="username" />
+            <input type="password" name="password" placeholder="Mot de passe" />
+            <input class="btn main-btn" type="submit" value="Se connecter" />
+            <input
+              class="btn"
+              type="button"
+              value="Inscription"
+              id="navigateRegisterBtn"
+            />
+            <input
+              class="btn"
+              type="button"
+              value="Accueil"
+              id="navigateHomeBtn"
+            />
+            <script>
+              document.getElementById("navigateRegisterBtn").onclick =
+                function () {
+                  window.location = "/register";
+                };
+              document.getElementById("navigateHomeBtn").onclick = function () {
+                window.location = "/";
+              };
+            </script>
           </form>
         </div>
       </div>

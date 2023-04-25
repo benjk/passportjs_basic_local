@@ -15,33 +15,36 @@
       <div class="wrapper">
         <div class="card">
           <div class="card-heading"></div>
-          <form method="post" , action="/login" class="card-body">
-            <div>
-              <h2>Inscrivez vous</h2>
-              <hr />
-            </div>
+          <form method="post" , action="/register" class="card-body">
+            <h2>Inscription</h2>
             <% if (error.length > 0) { %>
-            <div class="error-message">
-              <span class="error-text"><%= error[0] %></span>
+              <div class="message error-message">
+                <span class="message-text error-text"><%= error[0] %></span>
             </div>
             <% } %>
             <input type="text" placeholder="Email" name="username" />
             <input type="password" name="password" placeholder="Mot de passe" />
-            <input class="btn" type="submit" value="Se connecter" />
-            <button class="btn" type="button" id="navigateRegisterBtn">
-              Se connecter
-            </button>
-            <button class="btn" type="button" id="navigateHomeBtn">
-              Accueil
-            </button>
+            <input class="btn main-btn" type="submit" value="S'inscrire" />
+            <input
+              class="btn"
+              type="button"
+              value="Connexion"
+              id="navigateLoginBtn"
+            />
+            <input
+              class="btn"
+              type="button"
+              value="Accueil"
+              id="navigateHomeBtn"
+            />
             <script>
-              document.getElementById("navigateRegisterBtn").onclick =
-              function () {
-                window.location = "/login";
+              document.getElementById("navigateLoginBtn").onclick =
+                function () {
+                  window.location = "/login";
+                };
+              document.getElementById("navigateHomeBtn").onclick = function () {
+                window.location = "/";
               };
-            document.getElementById("navigateHomeBtn").onclick = function () {
-              window.location = "/";
-            };
             </script>
           </form>
         </div>
