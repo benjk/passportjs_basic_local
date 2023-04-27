@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <title>Sign In</title>
+  </head>
+
+  <body>
+    <div class="page-wrapper">
+      <div class="wrapper">
+        <div class="card">
+          <div class="card-message">
+            <h1>Démonstration de notre application de gestion de compte utilisateur</h1>
+            <% if (data) { %>
+                <p>Bonjour <strong><%= data.username %></strong>, tu es actuellement connecté.</p>
+                <% if (data.admin) { %>
+                    <p>Tu es un administrateur.</p>
+                        <% } else { %>
+                    <p>Tu n'es pas un administrateur.</p>
+                        <% } %>
+                <% } else { %>
+                <p>Bonjour visiteur, tu n'es pas connecté et n'aura pas accès à certaines pages.</p>
+                <% } %>
+            
+                <div>                    
+                    <p>Ce site est un exemple d'application web avec une gestion de comptes utilisateurs.
+                    Pour comprendre son fonctionnement, tu peux consulter les pages suivantes :</p><br>
+                    <ul>
+                        <li><a href="/register">Inscription</a></li>
+                        <li><a href="/login">Connexion</a></li>
+                        <li><a href="/logout">Déconnexion</a></li>
+                        <li><a href="/protected-route">Ton profil</a></li>
+                        <li><a href="/admin-route">page Admin</a></li>
+                    </ul>
+                </div>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

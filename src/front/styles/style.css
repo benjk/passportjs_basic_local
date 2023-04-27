@@ -59,6 +59,13 @@ h2 {
 }
 
 /* ==========================================================================
+   #Extra SPACING
+   ========================================================================== */
+   .pt-260 {
+    padding-top: 260px;
+  }
+
+/* ==========================================================================
    #CARD CONTENANT LE FORM
    ========================================================================== */
 
@@ -75,7 +82,7 @@ h2 {
     display: flex;
     flex-direction: row;
   }
-  
+
   .card .card-heading {
     background: url("../img/img_connect.jpg") top left/cover no-repeat;
     width: 47%;
@@ -108,7 +115,24 @@ h2 {
       width: 100%;
       padding: 15px 30px;
     }
+
+    .card .card-message {
+      padding: 15px 30px;
+    }
   }
+
+
+/* ==========================================================================
+   #CARD MESSAGES
+   ========================================================================== */
+   
+   .card-message {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.7rem, calc(1vw + 0.5rem), 2rem);
+    padding: 37px 45px;
+    font-family: "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", "Luxi Sans", sans-serif;
+   }
 
 /* ==========================================================================
    #FORM

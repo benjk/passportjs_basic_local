@@ -89,18 +89,20 @@ router.get("/register", (req, res, next) => {
 });
 
 router.get("/", (req, res, next) => {
-  var accueilMsg = "Tu n'es pas connecté"
-  if (req.isAuthenticated()) {
-    accueilMsg = `Bonjour <u>${req.user?.username}</u> ! Tu es actuellement connecté`
-  }
-  res.send(
-    '<h1>Home</h1><h3>' + accueilMsg + '</h3><p>Tu peux visiter ces pages:</p>' +
+  res.render('homePage', { data: req.user })
+
+  // var accueilMsg = "Tu n'es pas connecté"
+  // if (req.isAuthenticated()) {
+  //   accueilMsg = `Bonjour <u>${req.user?.username}</u> ! Tu es actuellement connecté`
+  // }
+  // res.send(
+  //   '<h1>Home</h1><h3>' + accueilMsg + '</h3><p>Tu peux visiter ces pages:</p>' +
     '<a href="/register">register</a>' +
     '<br><a href="/login">login</a>' + 
     '<br><a href="/logout">logout</a>' +
     '<br><a href="/protected-route">ton profil</a>' +
     '<br><a href="/admin-route">page Admin</a>'
-  );
+  // );
 });
 
 /**
