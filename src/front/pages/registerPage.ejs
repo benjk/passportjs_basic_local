@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <link rel="stylesheet" href="../styles/style.css" />
-    <title>Sign In</title>
+    <title>Inscription</title>
   </head>
 
   <body>
@@ -18,30 +18,28 @@
           <form method="post" , action="/register" class="card-body">
             <h2>Inscription</h2>
             <% if (error.length > 0) { %>
-              <div class="message error-message">
-                <span class="message-text error-text"><%= error[0] %></span>
+            <div class="message error-message">
+              <span class="message-text error-text"><%= error[0] %></span>
             </div>
             <% } %>
             <input type="text" placeholder="Email" name="username" />
             <input type="password" name="password" placeholder="Mot de passe" />
-            <input class="btn main-btn" type="submit" value="S'inscrire" />
-            <input
+            <input class="btn" type="submit" value="S'inscrire" />
+            <!-- <input
               class="btn"
               type="button"
               value="Connexion"
               id="navigateLoginBtn"
-            />
-            <input
-              class="btn"
-              type="button"
-              value="Accueil"
+            /> -->
+            <img
+              class="home-btn"
+              type="image"
+              alt="Accueil"
               id="navigateHomeBtn"
+              src="../img/icon_home.png"
             />
+            <p class="signup-btn">Déjà un compte ? <a href="/login">Connectez-vous</a>.</p>
             <script>
-              document.getElementById("navigateLoginBtn").onclick =
-                function () {
-                  window.location = "/login";
-                };
               document.getElementById("navigateHomeBtn").onclick = function () {
                 window.location = "/";
               };

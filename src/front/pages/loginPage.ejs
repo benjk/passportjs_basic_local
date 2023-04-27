@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <link rel="stylesheet" href="../styles/style.css" />
-    <title>Sign In</title>
+    <title>Connexion</title>
   </head>
 
   <body>
@@ -32,24 +32,26 @@
             <% } %>
             <input type="text" placeholder="Email" name="username" />
             <input type="password" name="password" placeholder="Mot de passe" />
-            <input class="btn main-btn" type="submit" value="Se connecter" />
-            <input
+            <input class="btn" type="submit" value="Se connecter" />
+            <!-- <input
               class="btn"
               type="button"
               value="Inscription"
               id="navigateRegisterBtn"
-            />
-            <input
-              class="btn"
-              type="button"
-              value="Accueil"
+            /> -->
+            <img
+              class="home-btn"
+              type="image"
+              alt="Accueil"
               id="navigateHomeBtn"
+              src="../img/icon_home.png"
             />
+            <p class="signup-btn">Pas encore membre ? <a href="/register">S'inscrire</a>.</p>
             <script>
-              document.getElementById("navigateRegisterBtn").onclick =
-                function () {
-                  window.location = "/register";
-                };
+              // document.getElementById("navigateRegisterBtn").onclick =
+              //   function () {
+              //     window.location = "/register";
+              //   };
               document.getElementById("navigateHomeBtn").onclick = function () {
                 window.location = "/";
               };

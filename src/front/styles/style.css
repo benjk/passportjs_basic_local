@@ -33,11 +33,13 @@ html {
 
 body {
   background-color: #CFD8DC;
+  font-family: "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", "Luxi Sans", sans-serif;
 }
 
 .page-wrapper {
   min-height: 100vh;
-  padding-top: 170px
+  padding-top: 170px;
+  padding-bottom: 170px;
 }
 
 /* ==========================================================================
@@ -54,8 +56,13 @@ body {
    ========================================================================== */
 h2 {
   color: #2C3E50;
-  font-family: "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", "Luxi Sans", sans-serif;
   text-transform: uppercase;
+}
+
+.signup-btn {
+  color: #2C3E50;
+  font-size: 0.8rem;
+  text-align: center;
 }
 
 /* ==========================================================================
@@ -90,22 +97,24 @@ h2 {
   }
   
   .card .card-body {
-    padding: 37px 45px;
+    padding: 37px 60px;
     width: 53%;
     display: flex;
     flex-direction: column;
-    /* gap: 1.6rem; */
-    gap: clamp(1.7rem, calc(1vw + 0.5rem), 2rem);
+    justify-content: center;
+    gap: clamp(1.5rem, calc(1vw + 0.45rem), 2rem);
     margin-top: 1rem;
   }
   
   @media (max-width: 780px) {
     .page-wrapper {
-      padding-top: 0
+      padding-top: 0;
+      padding-bottom: 0;
     }
   
     .card {
       flex-direction: column;
+      border-radius: 0;
     }
     .card .card-heading {
       width: 100%;
@@ -131,7 +140,6 @@ h2 {
     flex-direction: column;
     gap: clamp(1.7rem, calc(1vw + 0.5rem), 2rem);
     padding: 37px 45px;
-    font-family: "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", "Luxi Sans", sans-serif;
    }
 
 /* ==========================================================================
@@ -139,7 +147,7 @@ h2 {
    ========================================================================== */
   
   .card-body input {
-    border-radius: 4px;
+    border-radius: 10px;
     border: 1px solid #ccc;
     resize: none;
     padding: 0.45em;
@@ -159,14 +167,32 @@ h2 {
     color: white;
     font-family: "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", "Luxi Sans", sans-serif;
     background-color: #2C3E50;
+    margin-left: 4.5rem;
+    margin-right: 4.5rem;
+    border-radius: 40px !important;
   }
   
   .btn:hover {
     background-color: #566573;
+    cursor: pointer;
   }
-  
-  .main-btn {
-    background-color: #2C3E50;
+
+  .home-btn {
+    height: 2.5rem;
+    width: 2.6rem;
+    max-width: auto;
+    object-fit: contain;
+    caret-color: transparent;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .home-btn:hover {
+    cursor: pointer;
+  }
+
+  ul {
+    margin-left : 2em;
   }
 
 /* ==========================================================================

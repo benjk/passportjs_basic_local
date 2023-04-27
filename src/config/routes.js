@@ -47,7 +47,6 @@ router.post(
 
     if (!errors.isEmpty()) {
       for (const err of errors.array()){
-        console.log(err.msg);
         req.flash('error', err.msg)
       }
 
