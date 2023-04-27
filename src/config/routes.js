@@ -26,7 +26,7 @@ router.post(
         req.flash('error', err.msg)
       }
 
-      res.redirect('/register')
+      res.redirect('/login')
     } else {
       // Si pas d'erreur on lance le next middleware = signup avec passport
       next()
