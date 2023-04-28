@@ -4,8 +4,7 @@ const passport = require("passport")
 const path = require("path")
 const { checkSchema, validationResult } = require('express-validator')
 
-const { isAuth, isAdmin } = require("../utils/authMiddleware.js")
-const { getProfilePageData } = require("../utils/messageBuilder.js")
+const { getProfilePageData, getAdminPageData, getLoginSuccessData } = require("../utils/messageBuilder.js")
 const msg = require ('./data.json').messages
 
 /**
@@ -80,11 +79,8 @@ router.get("/login", (req, res, next) => {
 });
 
 router.get("/register", (req, res, next) => {
-  // Récupération des messages flashs et affichage en console
+  // Récupération des messages flashs
   const error = req.flash('error') || []
-  for (const err of error){
-    console.log("Mon erreur flash :" + err);
-  }
   res.render('registerPage', { error })
 });
 
@@ -94,7 +90,7 @@ router.get("/", (req, res, next) => {
 
 /**
  * Ici on met en place une route accessible seulement si on est authentifié
- * En passant le middleware isAuth en paramètre, on ne pourra y accéder que si l'on est pas bloqué par isAuth
+ * on récupère les données à afficher depuis le messageBuilder
  */
 router.get("/protected-route", (req, res, next) => {
   let msgData = getProfilePageData(req.isAuthenticated(), req.user)
@@ -108,9 +104,25 @@ router.get("/protected-route", (req, res, next) => {
 /**
  * Ici on met en place une route accessible seulement si on est authentifié ET admin
  */
-router.get("/admin-route", isAdmin, (req, res, next) => {
-  // res.send("Vous êtes un admin.");
-  res.sendFile(path.join(__dirname, '..', 'front', 'pages', 'adminPage.html'));
+router.get("/admin-route", (req, res, next) => {
+  let msgData = getAdminPageData((req.isAuthenticated() && req.user.admin), req.user)
+  const infoData = {
+    msg: msgData,
+    user: req.user,
+  }
+  res.render('infoPage', { data: infoData })
+});
+
+/**
+ * La routes en cas de login success
+ */
+router.get("/login-success", (req, res, next) => {
+  let msgData = getLoginSuccessData((req.isAuthenticated() && req.user.admin), req.user)
+  const infoData = {
+    msg: msgData,
+    user: req.user,
+  }
+  res.render('infoPage', { data: infoData })
 });
 
 /**
@@ -123,15 +135,6 @@ router.get("/logout", (req, res, next) => {
     }
     res.redirect("/");
   });
-});
-
-/**
- * La routes en cas de login success
- */
-router.get("/login-success", (req, res, next) => {
-  res.send(
-    '<p>You successfully logged in. --> <a href="/protected-route">Go to protected route</a></p>'
-  );
 });
 
 module.exports = router;

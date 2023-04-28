@@ -7,5 +7,19 @@
         "cant": {
             "title": "Vous ne pouvez pas accéder ici !"
         }
+    },
+    "adminPage": {
+        "pageTitle": "Administration",
+        "can": {
+            "title": "Administration du site"
+        },
+        "cant": {
+            "title": "Administration du site",
+            "text": "Cette page est reservé aux administrateurs"
+        }
+    },
+    "loginSuccessPage": {
+        "pageTitle": "Account Manager Démo App",
+        "title": "Authentification réussi"
     }
 }
