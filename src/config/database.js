@@ -21,6 +21,7 @@ var db = {};
 const sequelize = new Sequelize(BDD_BASENAME, BDD_USER, BDD_PASSWORD, {
   host: BDD_HOSTURL,
   dialect: "mysql",
+  port: BDD_PORT,
 });
 
 const User = require('../models/user.model.js')(sequelize, DataTypes)
