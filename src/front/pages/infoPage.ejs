@@ -7,17 +7,29 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <link rel="stylesheet" href="../styles/style.css" />
-    <title>Sign In</title>
+    <title><%= data.msg.pageTitle %></title>
   </head>
 
   <body>
-    <div class="page-wrapper">
-      <div class="wrapper">
+    <div class="page-wrapper pt-260">
+      <div class="small-wrapper">
         <div class="card">
           <div class="card-message">
-            <!-- TODO: data a intégrer (titre + message) -->
+            <h2><%= data.msg.title %></h2>
+            <p><%- data.msg.text %></p>
+              <img
+              class="home-btn"
+              type="image"
+              id="navigateHomeBtn"
+              src="../img/icon_home.png"
+              />
           </div>
       </div>
     </div>
+    <script>
+      document.getElementById("navigateHomeBtn").onclick = function () {
+        window.location = "/";
+      };
+    </script>
   </body>
 </html>

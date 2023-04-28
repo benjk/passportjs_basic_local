@@ -1,10 +1,11 @@
-const express = require("express");
-const router = express.Router();
-const passport = require("passport");
+const express = require("express")
+const router = express.Router()
+const passport = require("passport")
 const path = require("path")
-const { checkSchema, validationResult } = require('express-validator');
+const { checkSchema, validationResult } = require('express-validator')
 
-const { isAuth, isAdmin } = require("../utils/authMiddleware.js");
+const { isAuth, isAdmin } = require("../utils/authMiddleware.js")
+const { getProfilePageData } = require("../utils/messageBuilder.js")
 const msg = require ('./data.json').messages
 
 /**
@@ -18,7 +19,7 @@ router.post(
   checkSchema(loginSchema),
   (req, res, next) => {
     // Validate incoming input
-    const errors = validationResult(req);
+    const errors = validationResult(req)
 
     // S'il y a des erreurs on aliment les flash messages et on redirige
     if (!errors.isEmpty()) {
@@ -89,30 +90,19 @@ router.get("/register", (req, res, next) => {
 
 router.get("/", (req, res, next) => {
   res.render('homePage', { data: req.user })
-
-  // var accueilMsg = "Tu n'es pas connecté"
-  // if (req.isAuthenticated()) {
-  //   accueilMsg = `Bonjour <u>${req.user?.username}</u> ! Tu es actuellement connecté`
-  // }
-  // res.send(
-  //   '<h1>Home</h1><h3>' + accueilMsg + '</h3><p>Tu peux visiter ces pages:</p>' +
-    '<a href="/register">register</a>' +
-    '<br><a href="/login">login</a>' + 
-    '<br><a href="/logout">logout</a>' +
-    '<br><a href="/protected-route">ton profil</a>' +
-    '<br><a href="/admin-route">page Admin</a>'
-  // );
 });
 
 /**
  * Ici on met en place une route accessible seulement si on est authentifié
  * En passant le middleware isAuth en paramètre, on ne pourra y accéder que si l'on est pas bloqué par isAuth
  */
-router.get("/protected-route", isAuth, (req, res, next) => {
-  const adminMessage = req.user.admin ? "Tu es un admin" : "Tu n'es pas un admin"
-  const logoutBtn = "<br><form action='/logout'><input type='submit' value='Logout'/></form>"
-  const adminBtn = "<form action='/admin-route'><input type='submit' value='Admin'/></form>"
-  res.send("Tu es connecté " + req.user.username + " ! " + adminMessage + logoutBtn + adminBtn);
+router.get("/protected-route", (req, res, next) => {
+  let msgData = getProfilePageData(req.isAuthenticated(), req.user)
+  const infoData = {
+    msg: msgData,
+    user: req.user,
+  }
+  res.render('infoPage', { data: infoData })
 });
 
 /**
@@ -136,16 +126,12 @@ router.get("/logout", (req, res, next) => {
 });
 
 /**
- * Les routes en cas de login ou d'échec
+ * La routes en cas de login success
  */
 router.get("/login-success", (req, res, next) => {
   res.send(
     '<p>You successfully logged in. --> <a href="/protected-route">Go to protected route</a></p>'
   );
-});
-
-router.get("/login-failure", (req, res, next) => {
-  res.send("You entered the wrong password.");
 });
 
 module.exports = router;

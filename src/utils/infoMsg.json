@@ -1,0 +1,11 @@
+{
+    "profilePage": {
+        "pageTitle": "Profil",
+        "can": {
+            "title": "Bienvenue sur ton profil"
+        },
+        "cant": {
+            "title": "Vous ne pouvez pas accéder ici !"
+        }
+    }
+}
