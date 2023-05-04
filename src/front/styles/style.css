@@ -27,9 +27,10 @@ html {
   box-sizing: inherit;
 }
 
-h1,h2,h3,h4,h5,p,img {
+h1,h2,h3,h4,h5,p,img, span {
   caret-color: transparent;
 }
+
 
 /* ==========================================================================
    #PAGE WRAPPER
