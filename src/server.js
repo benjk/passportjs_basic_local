@@ -2,18 +2,22 @@ const express = require("express");
 const path = require("path")
 const passport = require("passport");
 const flash = require('connect-flash')
+const favicon = require('serve-favicon')
 
 const routes = require("./config/routes.js");
 
 // Create the Express application
 const app = express();
 
+//Favicon
+app.use(favicon(path.join(__dirname, 'front',  'img', 'icons','favicon.ico')))
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
 // Moteur de template EJS
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'front', 'pages'));
+app.set('views', path.join(__dirname, 'front'));
 
 /**
  * -------------- DATABASE ----------------

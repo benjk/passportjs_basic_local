@@ -23,6 +23,7 @@
     "path": "^0.12.7",
     "railway": "^2.0.17",
     "sequelize": "^6.30.0",
+    "serve-favicon": "^2.5.0",
     "url": "^0.11.0"
   },
   "engines": {
