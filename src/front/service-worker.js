@@ -6,6 +6,8 @@ const urlsToCache  = [
     '/',
     '/login',
     '/register',
+    '/protected-route',
+    '/admin-route',
     '/img/img_connect.jpg',
     '/img/icon_home.png',
     '/img/icons/apple-touch-icon.png',
