@@ -101,9 +101,16 @@ h2 {
   }
 
   .card .card-heading {
-    background: url("../img/img_connect.jpg") top left/cover no-repeat;
     width: 47%;
-    min-height: 500px;
+    min-height: 400px;
+  }
+  
+  .card .connect {
+    background: url("../img/img_connect.jpg") center /cover no-repeat;
+  }
+
+  .card .register {
+    background: url("../img/img_register.jpg") center /cover no-repeat;
   }
   
   .card .card-body {
